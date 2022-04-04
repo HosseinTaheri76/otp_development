@@ -74,13 +74,6 @@ class OtpSession(models.Model):
             raise exceptions.OtpSessionExpired
         raise exceptions.OtpSessionBlocked
 
-    @classmethod
-    def get_otp_session_by_phone_number(cls, phone_number):
-        try:
-            return cls.objects.get(user__phone_number=phone_number)
-        except cls.DoesNotExist:
-            return None
-
     def is_verified_and_valid(self, request_path):
         return (
                 self.is_verified and

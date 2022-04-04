@@ -76,10 +76,6 @@ class TestOtpSessionModel(TestCase):
         self.otp_session.verify_session(self.otp_session.code)
         self.assertEqual(self.otp_session.is_verified_and_valid('/products/'), False)
 
-    def test_otp_session_by_phone_number(self):
-        self.assertEqual(OtpSession.get_otp_session_by_phone_number('09302844505'), None)
-        self.assertEqual(OtpSession.get_otp_session_by_phone_number('09124470199'), self.otp_session)
-
     def test_completed_and_ended_session_is_not_valid(self):
         self.otp_session.verify_session(self.otp_session.code)
         self.assertEqual(self.otp_session.is_verified_and_valid('/'), True)
